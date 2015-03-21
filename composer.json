@@ -1,0 +1,23 @@
+{
+    "name": "anomaly/system-module",
+    "type": "streams-addon",
+    "description": "System profiling and management module.",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "AnomalyLabs",
+            "email": "hello@anomaly.is"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\SystemModule\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
