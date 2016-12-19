@@ -9,6 +9,9 @@
             "email": "hello@anomaly.is"
         }
     ],
+    "require": {
+        "anomaly/streams-platform": "1.1.*"
+    },
     "autoload": {
         "psr-4": {
             "Anomaly\\SystemModule\\": "src/"
