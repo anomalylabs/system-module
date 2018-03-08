@@ -1,0 +1,38 @@
+{
+    "name": "anomaly/system-module",
+    "type": "streams-addon",
+    "description": "A system support and management utility for the Streams Platform.",
+    "keywords": [
+        "log viewer",
+        "system module",
+        "pyrocms module"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "support@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        },
+        {
+            "name": "Ryan Thompson",
+            "email": "ryan@pyrocms.com",
+            "homepage": "http://ryanthepyro.com/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "support@pyrocms.com"
+    },
+    "require": {
+        "jackiedo/log-reader": "2.*",
+        "outcompute/phpinfo": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\SystemModule\\": "src/"
+        }
+    }
+}
