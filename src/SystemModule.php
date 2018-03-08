@@ -19,18 +19,4 @@ class SystemModule extends Module
      */
     protected $icon = 'fa fa-wrench';
 
-    /**
-     * The module sections.
-     *
-     * @var array
-     */
-    protected $sections = [
-        'system' => [
-            'sections' => [
-                'environment',
-            ],
-        ],
-        'logs',
-    ];
-
 }
