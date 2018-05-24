@@ -24,22 +24,6 @@ class SystemController extends AdminController
         phpinfo(INFO_GENERAL);
         phpinfo(INFO_CONFIGURATION);
         phpinfo(INFO_MODULES);
-        $content = ob_get_contents();
-        ob_get_clean();
-
-        $content = $this->dispatch(new ReplacePHPInfoStyles($content));
-
-        return $this->view->make('anomaly.module.system::info', compact('content'));
-    }
-
-    /**
-     * Return the PHP information.
-     *
-     * @return \Illuminate\Contracts\View\View|mixed
-     */
-    public function environment()
-    {
-        ob_start();
         phpinfo(INFO_ENVIRONMENT);
         phpinfo(INFO_VARIABLES);
         $content = ob_get_contents();

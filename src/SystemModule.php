@@ -19,4 +19,15 @@ class SystemModule extends Module
      */
     protected $icon = 'fa fa-wrench';
 
+    /**
+     * The addon sections.
+     *
+     * @var array
+     */
+    protected $sections = [
+        'system',
+        'logs',
+        'jobs',
+    ];
+
 }

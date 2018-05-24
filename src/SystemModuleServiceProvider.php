@@ -19,9 +19,9 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $routes = [
-        'admin/system'             => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@info',
-        'admin/system/environment' => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@environment',
-        'admin/system/logs'        => 'Anomaly\SystemModule\Http\Controller\Admin\LogsController@index',
+        'admin/system'      => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@info',
+        'admin/system/logs' => 'Anomaly\SystemModule\Http\Controller\Admin\LogsController@index',
+        'admin/system/jobs' => 'Anomaly\SystemModule\Http\Controller\Admin\JobsController@index',
     ];
 
     /**

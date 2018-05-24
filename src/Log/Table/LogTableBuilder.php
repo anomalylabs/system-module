@@ -12,4 +12,16 @@ use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 class LogTableBuilder extends TableBuilder
 {
 
+    /**
+     * The table columns.
+     *
+     * @var array
+     */
+    protected $columns = [
+        'log' => [
+            'heading' => 'anomaly.module.system::field.log.name',
+            'value'   => 'entry.basename',
+        ],
+    ];
+    
 }
