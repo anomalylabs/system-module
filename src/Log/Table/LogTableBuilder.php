@@ -23,5 +23,16 @@ class LogTableBuilder extends TableBuilder
             'value'   => 'entry.basename',
         ],
     ];
-    
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'view' => [
+            'href' => 'admin/system/logs/{entry.basename}',
+        ],
+    ];
+
 }

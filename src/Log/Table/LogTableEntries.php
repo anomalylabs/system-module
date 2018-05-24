@@ -31,6 +31,8 @@ class LogTableEntries
             $reader->getLogFilenameList()
         );
 
+        krsort($logs);
+
         $builder->setTableEntries(new Collection($logs));
     }
 }
