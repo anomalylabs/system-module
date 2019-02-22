@@ -27,8 +27,7 @@
         "email": "support@pyrocms.com"
     },
     "require": {
-        "jackiedo/log-reader": "2.*",
-        "outcompute/phpinfo": "1.*"
+        "laravel/telescope": "^1.0"
     },
     "autoload": {
         "psr-4": {
