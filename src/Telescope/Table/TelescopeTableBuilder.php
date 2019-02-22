@@ -1,6 +1,9 @@
 <?php namespace Anomaly\SystemModule\Telescope\Table;
 
+use Anomaly\Streams\Platform\Model\EloquentTableRepository;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Illuminate\Database\Eloquent\Builder;
+use Laravel\Telescope\Storage\EntryModel;
 
 /**
  * Class TelescopeTableBuilder
@@ -21,6 +24,24 @@ class TelescopeTableBuilder extends TableBuilder
     protected $type = null;
 
     /**
+     * The entry model.
+     *
+     * @var string
+     */
+    protected $model = EntryModel::class;
+
+    /**
+     * The table options.
+     *
+     * @var array
+     */
+    protected $options = [
+        'order_by' => [
+            'created_at' => 'DESC',
+        ],
+    ];
+
+    /**
      * Fired when ready to build.
      *
      * @throws \Exception
@@ -31,12 +52,24 @@ class TelescopeTableBuilder extends TableBuilder
             throw new \Exception('The $type parameter is required when displaying Telescope data.');
         }
 
-        $this->setColumns(
-            config(
-                'anomaly.module.system::telescope.' . $this->getType() . '.table.columns',
-                ['entry.id', '{{ entry|json_encode }}']
-            )
-        );
+        if (!$this->getColumns()) {
+            $this->setColumns(
+                config(
+                    'anomaly.module.system::telescope.' . $this->getType() . '.table.columns',
+                    ['entry.id', '{{ entry|json_encode }}']
+                )
+            );
+        }
+    }
+
+    /**
+     * Fired just before querying.
+     *
+     * @param Builder $query
+     */
+    public function onQuerying(Builder $query)
+    {
+        $query->where('type', str_singular($this->getType()));
     }
 
     /**

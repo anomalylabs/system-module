@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SystemModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Laravel\Telescope\Console\PruneCommand;
 use Laravel\Telescope\TelescopeServiceProvider;
 
 /**

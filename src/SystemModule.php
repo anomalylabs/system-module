@@ -27,22 +27,142 @@ class SystemModule extends Module
     protected $sections = [
         'system',
 
-        'requests',
-        'commands',
-        'schedule',
-        'jobs',
+        'requests' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'commands' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'schedule' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'jobs' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
 
-        'exceptions',
-        'logs',
-        'dumps',
-        'queries',
-        'models',
-        'events',
-        'mail',
-        'notifications',
-        //'gates',
-        'cache',
-        'redis',
+        'exceptions' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'logs' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'dumps' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'queries' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'models' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'events' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'mail' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'notifications' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+//        'gates' => [
+//            'buttons' => [
+//                'refresh' => [
+//                    'type' => 'primary',
+//                    'icon' => 'refresh',
+//                    'href' => '{request.path}',
+//                ],
+//            ],
+//        ],
+        'cache' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
+        'redis' => [
+            'buttons' => [
+                'refresh' => [
+                    'type' => 'primary',
+                    'icon' => 'refresh',
+                    'href' => '{request.path}',
+                ],
+            ],
+        ],
     ];
 
 }
