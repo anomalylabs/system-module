@@ -1,16 +1,55 @@
 <?php
 
 return [
-    'logs'        => [
+    'logs'          => [
         'title' => 'Logs',
     ],
-    'jobs'        => [
+    'jobs'          => [
         'title' => 'Jobs',
     ],
-    'system'      => [
+    'mail'          => [
+        'title' => 'Mail',
+    ],
+    'cache'         => [
+        'title' => 'Cache',
+    ],
+    'redis'         => [
+        'title' => 'Redis',
+    ],
+    'dumps'         => [
+        'title' => 'Dumps',
+    ],
+    'gates'         => [
+        'title' => 'Gates',
+    ],
+    'queries'       => [
+        'title' => 'Queries',
+    ],
+    'models'        => [
+        'title' => 'Models',
+    ],
+    'events'        => [
+        'title' => 'Events',
+    ],
+    'system'        => [
         'title' => 'System',
     ],
-    'environment' => [
+    'requests'      => [
+        'title' => 'Requests',
+    ],
+    'commands'      => [
+        'title' => 'Commands',
+    ],
+    'schedule'      => [
+        'title' => 'Schedule',
+    ],
+    'environment'   => [
         'title' => 'Environment',
+    ],
+    'exceptions'    => [
+        'title' => 'Exceptions',
+    ],
+    'notifications' => [
+        'title' => 'Notifications',
     ],
 ];

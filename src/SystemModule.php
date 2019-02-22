@@ -26,8 +26,23 @@ class SystemModule extends Module
      */
     protected $sections = [
         'system',
-        'logs',
+
+        'requests',
+        'commands',
+        'schedule',
         'jobs',
+
+        'exceptions',
+        'logs',
+        'dumps',
+        'queries',
+        'models',
+        'events',
+        'mail',
+        'notifications',
+        //'gates',
+        'cache',
+        'redis',
     ];
 
 }
