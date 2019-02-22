@@ -27,6 +27,7 @@
         "email": "support@pyrocms.com"
     },
     "require": {
+        "anomaly/streams-platform": "^1.6",
         "laravel/telescope": "^1.0"
     },
     "autoload": {

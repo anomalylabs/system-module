@@ -1,7 +1,7 @@
 <?php namespace Anomaly\SystemModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Jackiedo\LogReader\LogReaderServiceProvider;
+use Laravel\Telescope\TelescopeServiceProvider;
 
 /**
  * Class SystemModuleServiceProvider
@@ -14,6 +14,15 @@ class SystemModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
+     * Additional service providers.
+     *
+     * @type array|null
+     */
+    protected $providers = [
+        //TelescopeServiceProvider::class,
+    ];
+
+    /**
      * The addon routes.
      *
      * @type array|null
@@ -22,15 +31,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
         'admin/system'      => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@info',
         'admin/system/logs' => 'Anomaly\SystemModule\Http\Controller\Admin\LogsController@index',
         'admin/system/jobs' => 'Anomaly\SystemModule\Http\Controller\Admin\JobsController@index',
-    ];
-
-    /**
-     * Additional service providers.
-     *
-     * @type array|null
-     */
-    protected $providers = [
-        LogReaderServiceProvider::class,
     ];
 
 }
