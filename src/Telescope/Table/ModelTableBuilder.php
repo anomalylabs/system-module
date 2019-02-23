@@ -15,15 +15,5 @@ class ModelTableBuilder extends TelescopeTableBuilder
      *
      * @var array
      */
-    protected $columns = [
-        'entry.content.model'              => [
-            'heading' => 'Model',
-        ],
-        'entry.content.action'             => [
-            'heading' => 'Action',
-        ],
-        'entry.created_at.diffForHumans()' => [
-            'heading' => 'Happened',
-        ],
-    ];
+    protected $columns = ModelTableColumns::class;
 }

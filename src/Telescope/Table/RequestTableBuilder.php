@@ -7,6 +7,13 @@
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
+/**
+ * Class RequestTableBuilder
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class RequestTableBuilder extends TelescopeTableBuilder
 {
 
@@ -21,28 +28,31 @@ class RequestTableBuilder extends TelescopeTableBuilder
                 'content',
             ],
         ],
+        'status' => [
+            'column'  => 'content',
+            'filter'  => 'select',
+            'options' => [
+                '"response_status":200' => 200,
+                '"response_status":500' => 500,
+            ],
+        ],
+    ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'view' => [
+            'href' => 'admin/system/requests/{entry.uuid}',
+        ],
     ];
 
     /**
      * The table columns.
      *
-     * @var array
+     * @var string
      */
-    protected $columns = [
-        'entry.content.method'             => [
-            'heading' => 'Verb',
-        ],
-        'entry.content.uri'                => [
-            'heading' => 'Path',
-        ],
-        'entry.content.response_status'    => [
-            'heading' => 'Status',
-        ],
-        'entry.content.duration'           => [
-            'heading' => 'Duration',
-        ],
-        'entry.created_at.diffForHumans()' => [
-            'heading' => 'Happened',
-        ],
-    ];
+    protected $columns = RequestTableColumns::class;
 }

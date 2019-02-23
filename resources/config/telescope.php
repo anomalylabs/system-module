@@ -32,8 +32,17 @@ return [
         'events'     => [
             'table' => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
         ],
+        'mail'     => [
+            'table' => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
+        ],
+        'notifications'     => [
+            'table' => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
+        ],
         'cache'      => [
             'table' => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
+        ],
+        'redis'     => [
+            'table' => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
         ],
     ],
 ];

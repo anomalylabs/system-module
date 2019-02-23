@@ -1,13 +1,13 @@
 <?php namespace Anomaly\SystemModule\Telescope\Table;
 
 /**
- * Class LogTableBuilder
+ * Class NotificationTableBuilder
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class LogTableBuilder extends TelescopeTableBuilder
+class NotificationTableBuilder extends TelescopeTableBuilder
 {
 
     /**
@@ -15,5 +15,9 @@ class LogTableBuilder extends TelescopeTableBuilder
      *
      * @var array
      */
-    protected $columns = LogTableColumns::class;
+    protected $columns = [
+        'entry.content.id' => [
+            'heading' => 'ID',
+        ],
+    ];
 }
