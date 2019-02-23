@@ -5,6 +5,7 @@ use Anomaly\Streams\Platform\Model\System\SystemSystemEntryModel;
 use Anomaly\SystemModule\System\Contract\SystemRepositoryInterface;
 use Anomaly\SystemModule\System\SystemModel;
 use Anomaly\SystemModule\System\SystemRepository;
+use Laravel\Telescope\Console\PruneCommand;
 use Laravel\Telescope\TelescopeServiceProvider;
 
 /**
@@ -24,6 +25,17 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     protected $providers = [
         TelescopeServiceProvider::class,
+    ];
+
+    /**
+     * The scheduled commands.
+     *
+     * @var array
+     */
+    protected $schedules = [
+        'daily' => [
+            PruneCommand::class,
+        ],
     ];
 
     /**
