@@ -1,3 +1,9 @@
 <?php
 
-return [];
+return [
+    'system' => [
+        'read',
+        'write',
+        'delete',
+    ],
+];

@@ -163,6 +163,11 @@ class SystemModule extends Module
                 ],
             ],
         ],
+        'system' => [
+            'buttons' => [
+                'new_system',
+            ],
+        ],
     ];
 
 }

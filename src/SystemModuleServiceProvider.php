@@ -1,6 +1,10 @@
 <?php namespace Anomaly\SystemModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
+use Anomaly\SystemModule\System\Contract\SystemRepositoryInterface;
+use Anomaly\SystemModule\System\SystemRepository;
+use Anomaly\Streams\Platform\Model\System\SystemSystemEntryModel;
+use Anomaly\SystemModule\System\SystemModel;
 use Laravel\Telescope\TelescopeServiceProvider;
 
 /**
@@ -28,6 +32,9 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $routes = [
+        'admin/system'           => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@index',
+        'admin/system/create'    => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@create',
+        'admin/system/edit/{id}' => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@edit',
         'admin/system'        => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@info',
         'admin/system/{type}' => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
     ];

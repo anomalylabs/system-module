@@ -52,4 +52,7 @@ return [
     'notifications' => [
         'title' => 'Notifications',
     ],
+    'system' => [
+        'title' => 'System',
+    ],
 ];
