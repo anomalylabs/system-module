@@ -1,12 +1,13 @@
 <?php namespace Anomaly\SystemModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Anomaly\Streams\Platform\Model\System\SystemSystemEntryModel;
-use Anomaly\SystemModule\System\Contract\SystemRepositoryInterface;
-use Anomaly\SystemModule\System\SystemModel;
-use Anomaly\SystemModule\System\SystemRepository;
+use Laravel\Telescope\Console\ClearCommand;
 use Laravel\Telescope\Console\PruneCommand;
-use Laravel\Telescope\TelescopeServiceProvider;
+use Laravel\Telescope\Contracts\ClearableRepository;
+use Laravel\Telescope\Contracts\EntriesRepository;
+use Laravel\Telescope\Contracts\PrunableRepository;
+use Laravel\Telescope\Storage\DatabaseEntriesRepository;
+use Laravel\Telescope\Telescope;
 
 /**
  * Class SystemModuleServiceProvider
@@ -19,12 +20,13 @@ class SystemModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * Additional service providers.
+     * The addon commands.
      *
-     * @type array|null
+     * @var array
      */
-    protected $providers = [
-        TelescopeServiceProvider::class,
+    protected $commands = [
+        ClearCommand::class,
+        PruneCommand::class,
     ];
 
     /**
@@ -44,10 +46,47 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $routes = [
-        'admin/system'           => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@info',
-        'admin/system/create'    => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@create',
-        'admin/system/edit/{id}' => 'Anomaly\SystemModule\Http\Controller\Admin\SystemController@edit',
-        'admin/system/{type}'    => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
+        'admin/system/{type?}' => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
     ];
+
+    /**
+     * Register the addon.
+     */
+    public function register()
+    {
+        config(['telescope' => include_once base_path('vendor/laravel/telescope/config/telescope.php')]);
+
+        $this->app->singleton(
+            EntriesRepository::class,
+            DatabaseEntriesRepository::class
+        );
+
+        $this->app->singleton(
+            ClearableRepository::class,
+            DatabaseEntriesRepository::class
+        );
+
+        $this->app->singleton(
+            PrunableRepository::class,
+            DatabaseEntriesRepository::class
+        );
+
+        $this->app->when(DatabaseEntriesRepository::class)
+            ->needs('$connection')
+            ->give(config('telescope.storage.database.connection'));
+    }
+
+    /**
+     * Boot the addon.
+     */
+    public function boot()
+    {config(['telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled' => false]);
+        if (!request()->is('admin/system*')) {
+
+            Telescope::start($this->app);
+
+            Telescope::listenForStorageOpportunities($this->app);
+        }
+    }
 
 }

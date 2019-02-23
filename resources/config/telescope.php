@@ -1,47 +1,48 @@
 <?php
 
 return [
+    'test'     => true,
     'watchers' => [
-        'requests'   => [
+        'requests'      => [
             'table' => \Anomaly\SystemModule\Telescope\Table\RequestTableBuilder::class,
         ],
-        'commands'   => [
+        'commands'      => [
             'table' => \Anomaly\SystemModule\Telescope\Table\CommandTableBuilder::class,
         ],
-        'schedule'   => [
+        'schedule'      => [
             'table' => \Anomaly\SystemModule\Telescope\Table\ScheduleTableBuilder::class,
         ],
-        'jobs'       => [
+        'jobs'          => [
             'table' => \Anomaly\SystemModule\Telescope\Table\JobsTableBuilder::class,
         ],
-        'exceptions' => [
+        'exceptions'    => [
             'table' => \Anomaly\SystemModule\Telescope\Table\ExceptionTableBuilder::class,
         ],
-        'logs'       => [
+        'logs'          => [
             'table' => \Anomaly\SystemModule\Telescope\Table\LogTableBuilder::class,
         ],
-        'dumps'      => [
+        'dumps'         => [
             'table' => \Anomaly\SystemModule\Telescope\Table\DumpTableBuilder::class,
         ],
-        'queries'    => [
+        'queries'       => [
             'table' => \Anomaly\SystemModule\Telescope\Table\QueryTableBuilder::class,
         ],
-        'models'     => [
+        'models'        => [
             'table' => \Anomaly\SystemModule\Telescope\Table\ModelTableBuilder::class,
         ],
-        'events'     => [
+        'events'        => [
             'table' => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
         ],
-        'mail'     => [
+        'mail'          => [
             'table' => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
         ],
-        'notifications'     => [
+        'notifications' => [
             'table' => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
         ],
-        'cache'      => [
+        'cache'         => [
             'table' => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
         ],
-        'redis'     => [
+        'redis'         => [
             'table' => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
         ],
     ],

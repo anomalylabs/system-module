@@ -20,7 +20,7 @@ class TelescopeController extends AdminController
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($type)
+    public function index($type = 'requests')
     {
         if (!$table = config("anomaly.module.system::telescope.watchers.{$type}.table")) {
             throw new \Exception("Config [anomaly.module.system::telescope.watchers.{$type}.table] not found.");

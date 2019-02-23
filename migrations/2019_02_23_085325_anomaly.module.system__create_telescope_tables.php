@@ -5,13 +5,13 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class AnomalyModuleSystemCreateSystemStream
+ * Class AnomalyModuleSystemCreateTelescopeTables
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class AnomalyModuleSystemCreateSystemStream extends Migration
+class AnomalyModuleSystemCreateTelescopeTables extends Migration
 {
 
     /**

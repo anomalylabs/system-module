@@ -25,8 +25,6 @@ class SystemModule extends Module
      * @var array
      */
     protected $sections = [
-        'system',
-
         'requests' => [
             'buttons' => [
                 'refresh' => [
