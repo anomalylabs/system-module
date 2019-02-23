@@ -1,43 +1,36 @@
 <?php namespace Anomaly\SystemModule\Http\Controller\Admin;
 
-use Anomaly\SystemModule\System\Form\SystemFormBuilder;
-use Anomaly\SystemModule\System\Table\SystemTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\SystemModule\System\Command\ReplacePHPInfoStyles;
 
+/**
+ * Class SystemController
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class SystemController extends AdminController
 {
 
     /**
-     * Display an index of existing entries.
+     * Return the PHP information.
      *
-     * @param SystemTableBuilder $table
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function index(SystemTableBuilder $table)
+    public function info()
     {
-        return $table->render();
-    }
+        ob_start();
+        phpinfo(INFO_GENERAL);
+        phpinfo(INFO_CONFIGURATION);
+        phpinfo(INFO_MODULES);
+        phpinfo(INFO_ENVIRONMENT);
+        phpinfo(INFO_VARIABLES);
+        $content = ob_get_contents();
+        ob_get_clean();
 
-    /**
-     * Create a new entry.
-     *
-     * @param SystemFormBuilder $form
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function create(SystemFormBuilder $form)
-    {
-        return $form->render();
-    }
+        $content = $this->dispatch(new ReplacePHPInfoStyles($content));
 
-    /**
-     * Edit an existing entry.
-     *
-     * @param SystemFormBuilder $form
-     * @param        $id
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function edit(SystemFormBuilder $form, $id)
-    {
-        return $form->render($id);
+        return $this->view->make('anomaly.module.system::info', compact('content'));
     }
 }
