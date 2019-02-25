@@ -1,7 +1,7 @@
 <div class="card ">
 
     <ul class="nav nav-sections">
-        {% for attribute, label in attributes %}
+        {% for label, attribute in attributes %}
             <li class="nav-item {{ loop.first ? 'active' }}">
                 <a href="#tab-{{ str_slug(attribute) }}" data-toggle="tab" class="nav-link">
                     {{ label }}
@@ -11,41 +11,52 @@
     </ul>
 
     <div class="card-block">
-        {% for attribute, label in attributes %}
+        {% for label, attribute in attributes %}
 
-            {% if attribute not in ['content.line_preview', 'content.trace', 'content.payload', 'content.headers', 'content.session', 'content.value'] %}
+            {% if attribute %}
                 <div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">
-                    {{ array_get(entry, attribute) }}
+
+                    {% set value = value(attribute, entry) %}
+
+                    {% if value is iterable %}
+                        {% if value|first is iterable %}
+                            <pre><code>{{ dump(value) }}</code></pre>
+                        {% else %}
+                            <pre><code>{{ value|join('\n')|raw }}</code></pre>
+                        {% endif %}
+                    {% else %}
+                        {{ value }}
+                    {% endif %}
                 </div>
             {% endif %}
 
-            {% if attribute in ['content.line_preview'] %}
-                <div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">
-                    <pre><code>{{ array_get(entry, attribute)|join('\r')|raw }}</code></pre>
-                </div>
-            {% endif %}
+            {#{% if attribute in ['content.line_preview'] %}#}
+            {#<div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">#}
+            {#<pre><code>{{ array_get(entry, attribute)|join('\r')|raw }}</code></pre>#}
+            {#</div>#}
+            {#{% endif %}#}
 
-            {% if attribute in ['content.payload', 'content.headers', 'content.session', 'content.value'] %}
-                <div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">
-                    <pre><code>{{ json_encode(array_get(entry, attribute), 128) }}</code></pre>
-                </div>
-            {% endif %}
+            {#{% if attribute in ['content.payload', 'content.headers', 'content.session', 'content.value'] %}#}
+            {#<div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">#}
+            {#<pre><code>{{ json_encode(array_get(entry, attribute), 128) }}</code></pre>#}
+            {#</div>#}
+            {#{% endif %}#}
 
-            {% if attribute == 'content.trace' %}
-                <div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">
-                    <div class="table-responsive">
-                        <table class="table table-borderless">
-                            {% for item in array_get(entry, 'content.trace') %}
-                                {% if item.file %}
-                                    <tr>
-                                        <td>{{ item.file }}</td>
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
-                        </table>
-                    </div>
-                </div>
-            {% endif %}
+            {#{% if attribute == 'content.trace' %}#}
+            {#<div class="tab__pane tab-pane {{ loop.first ? 'active' }}" id="tab-{{ str_slug(attribute) }}">#}
+            {#<div class="table-responsive">#}
+            {#<table class="table table-borderless">#}
+            {#{% for item in array_get(entry, 'content.trace') %}#}
+            {#{% if item.file %}#}
+            {#<tr>#}
+            {#<td>{{ item.file }}</td>#}
+            {#</tr>#}
+            {#{% endif %}#}
+            {#{% endfor %}#}
+            {#</table>#}
+            {#</div>#}
+            {#</div>#}
+            {#{% endif %}#}
 
         {% endfor %}
     </div>
