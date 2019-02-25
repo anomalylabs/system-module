@@ -52,7 +52,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'jobs' => [
+        'jobs'     => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -62,7 +62,7 @@ class SystemModule extends Module
             ],
         ],
 
-        'exceptions' => [
+        'exceptions'    => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -71,7 +71,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'logs' => [
+        'logs'          => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -80,7 +80,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'dumps' => [
+        'dumps'         => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -89,7 +89,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'queries' => [
+        'queries'       => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -98,7 +98,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'models' => [
+        'models'        => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -107,7 +107,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'events' => [
+        'events'        => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -116,7 +116,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'mail' => [
+        'mail'          => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -134,16 +134,7 @@ class SystemModule extends Module
                 ],
             ],
         ],
-//        'gates' => [
-//            'buttons' => [
-//                'refresh' => [
-//                    'type' => 'primary',
-//                    'icon' => 'refresh',
-//                    'href' => '{request.path}',
-//                ],
-//            ],
-//        ],
-        'cache' => [
+        'cache'         => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
@@ -152,18 +143,13 @@ class SystemModule extends Module
                 ],
             ],
         ],
-        'redis' => [
+        'redis'         => [
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
                     'icon' => 'refresh',
                     'href' => '{request.path}',
                 ],
-            ],
-        ],
-        'system' => [
-            'buttons' => [
-                'new_system',
             ],
         ],
     ];

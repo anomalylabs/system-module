@@ -80,13 +80,22 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      * Boot the addon.
      */
     public function boot()
-    {config(['telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled' => false]);
+    {
         if (!request()->is('admin/system*')) {
-
-            Telescope::start($this->app);
-
-            Telescope::listenForStorageOpportunities($this->app);
+            return;
         }
+
+        if (!$enabled = config('anomaly.module.system::telescope.enabled', false)) {
+            return;
+        }
+
+        if (!config('anomaly.module.system::telescope.admin_enabled', false) && request()->is('admin*')) {
+            return;
+        }
+
+        Telescope::start($this->app);
+
+        Telescope::listenForStorageOpportunities($this->app);
     }
 
 }

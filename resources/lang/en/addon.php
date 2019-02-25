@@ -3,5 +3,5 @@
 return [
     'title'       => 'System',
     'name'        => 'System Module',
-    'description' => ''
+    'description' => 'A system management and monitoring utility for the Streams Platform.',
 ];

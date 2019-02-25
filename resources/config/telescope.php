@@ -1,49 +1,118 @@
 <?php
 
 return [
-    'test'     => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Telescope Master Switch
+    |--------------------------------------------------------------------------
+    |
+    | This option may be used to disable all Telescope watchers regardless
+    | of their individual configuration, which simply provides a single
+    | and convenient way to enable or disable Telescope data storage.
+    |
+    */
+
+    'enabled' => env('TELESCOPE_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Telescope Admin Monitoring
+    |--------------------------------------------------------------------------
+    |
+    | This option is used to disable Telescope
+    | watchers when accessing admin areas.
+    |
+    */
+
+    'admin_enabled' => env('TELESCOPE_ADMIN_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Ignored Paths & Commands
+    |--------------------------------------------------------------------------
+    |
+    | The following array lists the URI paths and Artisan commands that will
+    | not be watched by Telescope. In addition to this list, some Laravel
+    | commands, like migrations and queue commands, are always ignored.
+    |
+    */
+
+    'ignore_paths' => [
+        //
+    ],
+
+    'ignore_commands' => [
+        //
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Telescope Watchers
+    |--------------------------------------------------------------------------
+    |
+    | The following array lists the UI components to use for the "watchers"
+    | that will be registered with Telescope. The watchers gather the
+    | application's profile data when a request or task is executed.
+    |
+    */
+
     'watchers' => [
         'requests'      => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\RequestTableBuilder::class,
+            'enabled' => env('TELESCOPE_REQUEST_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\RequestTableBuilder::class,
         ],
         'commands'      => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\CommandTableBuilder::class,
+            'enabled' => env('TELESCOPE_COMMAND_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\CommandTableBuilder::class,
         ],
         'schedule'      => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\ScheduleTableBuilder::class,
+            'enabled' => env('TELESCOPE_SCHEDULE_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\ScheduleTableBuilder::class,
         ],
         'jobs'          => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\JobsTableBuilder::class,
+            'enabled' => env('TELESCOPE_JOB_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\JobsTableBuilder::class,
         ],
         'exceptions'    => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\ExceptionTableBuilder::class,
+            'enabled' => env('TELESCOPE_EXCEPTION_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\ExceptionTableBuilder::class,
         ],
         'logs'          => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\LogTableBuilder::class,
+            'enabled' => env('TELESCOPE_LOG_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\LogTableBuilder::class,
         ],
         'dumps'         => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\DumpTableBuilder::class,
+            'enabled' => env('TELESCOPE_DUMP_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\DumpTableBuilder::class,
         ],
         'queries'       => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\QueryTableBuilder::class,
+            'enabled' => env('TELESCOPE_QUERY_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\QueryTableBuilder::class,
         ],
         'models'        => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\ModelTableBuilder::class,
+            'enabled' => env('TELESCOPE_MODEL_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\ModelTableBuilder::class,
         ],
         'events'        => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
+            'enabled' => env('TELESCOPE_EVENT_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
         ],
         'mail'          => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
+            'enabled' => env('TELESCOPE_MAIL_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
         ],
         'notifications' => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
+            'enabled' => env('TELESCOPE_NOTIFICATION_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
         ],
         'cache'         => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
+            'enabled' => env('TELESCOPE_CACHE_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
         ],
         'redis'         => [
-            'table' => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
+            'enabled' => env('TELESCOPE_REDIS_WATCHER', true),
+            'table'   => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
         ],
     ],
 ];

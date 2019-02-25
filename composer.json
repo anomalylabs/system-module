@@ -1,7 +1,7 @@
 {
     "name": "anomaly/system-module",
     "type": "streams-addon",
-    "description": "A system support and management utility for the Streams Platform.",
+    "description": "A system management and monitoring utility for the Streams Platform.",
     "keywords": [
         "log viewer",
         "system module",

@@ -19,9 +19,6 @@ return [
     'dumps'         => [
         'title' => 'Dumps',
     ],
-    'gates'         => [
-        'title' => 'Gates',
-    ],
     'queries'       => [
         'title' => 'Queries',
     ],
@@ -43,16 +40,10 @@ return [
     'schedule'      => [
         'title' => 'Schedule',
     ],
-    'environment'   => [
-        'title' => 'Environment',
-    ],
     'exceptions'    => [
         'title' => 'Exceptions',
     ],
     'notifications' => [
         'title' => 'Notifications',
-    ],
-    'system' => [
-        'title' => 'System',
     ],
 ];
