@@ -1,7 +1,9 @@
 <?php namespace Anomaly\SystemModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\SystemModule\Entry\EntryModel;
 use Anomaly\SystemModule\Telescope\Table\TelescopeTableBuilder;
+use Laravel\Telescope\Contracts\EntriesRepository;
 
 /**
  * Class TelescopeController
@@ -32,6 +34,30 @@ class TelescopeController extends AdminController
         return $table
             ->setType($type)
             ->render();
+    }
+
+    /**
+     * View a Telescope entry.
+     *
+     * @param EntriesRepository $repository
+     * @param string $type
+     * @param $id
+     * @return \Illuminate\Contracts\View\View|mixed
+     */
+    public function view(EntriesRepository $repository, $type = 'requests', $id)
+    {
+        $watcher = config('anomaly.module.system::telescope.watchers.' . $type);
+
+        if (!$view = array_get($watcher, 'view')) {
+            dd($id);
+        }
+
+        /* @var EntryModel $entry */
+        $entry = (array)$repository->find($id);
+
+        //dd($entry);
+
+        return $this->view->make($view, compact('type', 'entry'));
     }
 
 }

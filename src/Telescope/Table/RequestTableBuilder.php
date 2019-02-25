@@ -44,9 +44,7 @@ class RequestTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $buttons = [
-        'view' => [
-            'href' => 'admin/system/requests/{entry.uuid}',
-        ],
+        'view',
     ];
 
     /**

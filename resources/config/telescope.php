@@ -60,58 +60,72 @@ return [
     'watchers' => [
         'requests'      => [
             'enabled' => env('TELESCOPE_REQUEST_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/requests/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\RequestTableBuilder::class,
         ],
         'commands'      => [
             'enabled' => env('TELESCOPE_COMMAND_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/commands/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\CommandTableBuilder::class,
         ],
         'schedule'      => [
             'enabled' => env('TELESCOPE_SCHEDULE_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/schedule/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ScheduleTableBuilder::class,
         ],
         'jobs'          => [
             'enabled' => env('TELESCOPE_JOB_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/jobs/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\JobsTableBuilder::class,
         ],
         'exceptions'    => [
             'enabled' => env('TELESCOPE_EXCEPTION_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/exceptions/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ExceptionTableBuilder::class,
         ],
         'logs'          => [
             'enabled' => env('TELESCOPE_LOG_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/logs/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\LogTableBuilder::class,
         ],
         'dumps'         => [
             'enabled' => env('TELESCOPE_DUMP_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/dumps/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\DumpTableBuilder::class,
         ],
         'queries'       => [
             'enabled' => env('TELESCOPE_QUERY_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/queries/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\QueryTableBuilder::class,
         ],
         'models'        => [
             'enabled' => env('TELESCOPE_MODEL_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/models/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ModelTableBuilder::class,
         ],
         'events'        => [
             'enabled' => env('TELESCOPE_EVENT_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/events/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
         ],
         'mail'          => [
             'enabled' => env('TELESCOPE_MAIL_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/mail/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
         ],
         'notifications' => [
             'enabled' => env('TELESCOPE_NOTIFICATION_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/notifications/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
         ],
         'cache'         => [
             'enabled' => env('TELESCOPE_CACHE_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/cache/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
         ],
         'redis'         => [
             'enabled' => env('TELESCOPE_REDIS_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/redis/view',
             'table'   => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
         ],
     ],

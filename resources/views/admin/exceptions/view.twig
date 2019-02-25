@@ -1,0 +1,15 @@
+{% extends "streams::blank" %}
+
+{% block  content %}
+    <div class="container-fluid">
+
+        {% include "anomaly.module.system::admin/common/details" with {
+            'attributes': {
+                'content.class': 'Class'
+            }
+        } %}
+
+        {% include "anomaly.module.system::admin/common/user" %}
+
+    </div>
+{% endblock %}

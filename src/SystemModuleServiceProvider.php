@@ -3,11 +3,8 @@
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Laravel\Telescope\Console\ClearCommand;
 use Laravel\Telescope\Console\PruneCommand;
-use Laravel\Telescope\Contracts\ClearableRepository;
-use Laravel\Telescope\Contracts\EntriesRepository;
-use Laravel\Telescope\Contracts\PrunableRepository;
-use Laravel\Telescope\Storage\DatabaseEntriesRepository;
 use Laravel\Telescope\Telescope;
+use Laravel\Telescope\TelescopeServiceProvider;
 
 /**
  * Class SystemModuleServiceProvider
@@ -46,7 +43,8 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      * @type array|null
      */
     protected $routes = [
-        'admin/system/{type?}' => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
+        'admin/system/{type?}'     => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
+        'admin/system/{type}/view/{id}' => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@view',
     ];
 
     /**
@@ -54,26 +52,27 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     public function register()
     {
-        config(['telescope' => include_once base_path('vendor/laravel/telescope/config/telescope.php')]);
-
-        $this->app->singleton(
-            EntriesRepository::class,
-            DatabaseEntriesRepository::class
-        );
-
-        $this->app->singleton(
-            ClearableRepository::class,
-            DatabaseEntriesRepository::class
-        );
-
-        $this->app->singleton(
-            PrunableRepository::class,
-            DatabaseEntriesRepository::class
-        );
-
-        $this->app->when(DatabaseEntriesRepository::class)
-            ->needs('$connection')
-            ->give(config('telescope.storage.database.connection'));
+        $this->app->register(TelescopeServiceProvider::class);
+//        config(['telescope' => include_once base_path('vendor/laravel/telescope/config/telescope.php')]);
+//
+//        $this->app->singleton(
+//            EntriesRepository::class,
+//            DatabaseEntriesRepository::class
+//        );
+//
+//        $this->app->singleton(
+//            ClearableRepository::class,
+//            DatabaseEntriesRepository::class
+//        );
+//
+//        $this->app->singleton(
+//            PrunableRepository::class,
+//            DatabaseEntriesRepository::class
+//        );
+//
+//        $this->app->when(DatabaseEntriesRepository::class)
+//            ->needs('$connection')
+//            ->give(config('telescope.storage.database.connection'));
     }
 
     /**
@@ -81,17 +80,173 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     public function boot()
     {
-        if (!request()->is('admin/system*')) {
+        if (request()->is('admin/system*')) {
             return;
         }
 
-        if (!$enabled = config('anomaly.module.system::telescope.enabled', false)) {
+        if (!config('anomaly.module.system::telescope.enabled', false)) {
             return;
         }
 
         if (!config('anomaly.module.system::telescope.admin_enabled', false) && request()->is('admin*')) {
             return;
         }
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\LogWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.logs.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\LogWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\JobWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.jobs.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\JobWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\MailWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.mail.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\MailWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\CacheWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.cache.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\CacheWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\RedisWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.redis.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\RedisWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\DumpWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.dumps.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\DumpWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\QueryWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.queries.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\QueryWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\ModelWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.models.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ModelWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\EventWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.events.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\EventWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.requests.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\CommandWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.commands.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\CommandWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\ScheduleWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.schedule.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ScheduleWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\ExceptionWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.exceptions.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ExceptionWatcher.enabled'));
+
+        config(
+            [
+                'telescope.watchers.Laravel\Telescope\Watchers\NotificationWatcher.enabled' => config(
+                    'anomaly.module.system::telescope.watchers.notifications.enabled',
+                    true
+                ),
+            ]
+        );
+
+        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\NotificationWatcher.enabled'));
+
+        config(['telescope.watchers.Laravel\Telescope\Watchers\GateWatcher.enabled' => false]);
 
         Telescope::start($this->app);
 

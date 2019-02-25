@@ -1,9 +1,8 @@
 <?php namespace Anomaly\SystemModule\Telescope\Table;
 
-use Anomaly\Streams\Platform\Model\EloquentTableRepository;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
+use Anomaly\SystemModule\Entry\EntryModel;
 use Illuminate\Database\Eloquent\Builder;
-use Laravel\Telescope\Storage\EntryModel;
 
 /**
  * Class TelescopeTableBuilder
