@@ -1,0 +1,24 @@
+{% extends "streams::blank" %}
+
+{% block  content %}
+    <div class="container-fluid">
+
+        {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
+        'createdAt': 'Time',
+        'content.hostname': 'Hostname',
+        'content.command': 'Command',
+        'content.exit_code': 'Exit Code',
+        }} %}
+
+        {% include "anomaly.module.system::admin/partials/user" %}
+
+        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
+        'content.value': 'Value',
+        }} %}
+
+        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
+        'content.cache': 'Cache',
+        }} %}
+
+    </div>
+{% endblock %}

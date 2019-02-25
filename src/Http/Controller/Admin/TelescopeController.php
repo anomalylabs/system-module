@@ -1,7 +1,6 @@
 <?php namespace Anomaly\SystemModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
-use Anomaly\SystemModule\Entry\EntryModel;
 use Anomaly\SystemModule\Telescope\Table\TelescopeTableBuilder;
 use Laravel\Telescope\Contracts\EntriesRepository;
 
@@ -22,8 +21,12 @@ class TelescopeController extends AdminController
      * @param $type
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index($type = 'requests')
+    public function index($type = null)
     {
+        if (!$type) {
+            return redirect('admin/system/requests');
+        }
+
         if (!$table = config("anomaly.module.system::telescope.watchers.{$type}.table")) {
             throw new \Exception("Config [anomaly.module.system::telescope.watchers.{$type}.table] not found.");
         }
@@ -44,7 +47,7 @@ class TelescopeController extends AdminController
      * @param $id
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function view(EntriesRepository $repository, $type = 'requests', $id)
+    public function view(EntriesRepository $repository, $type, $id)
     {
         $watcher = config('anomaly.module.system::telescope.watchers.' . $type);
 
@@ -52,10 +55,11 @@ class TelescopeController extends AdminController
             dd($id);
         }
 
-        /* @var EntryModel $entry */
         $entry = (array)$repository->find($id);
 
-        //dd($entry);
+        $entry['tags'] = array_pop($entry);
+
+        //var_dump($entry);die;
 
         return $this->view->make($view, compact('type', 'entry'));
     }

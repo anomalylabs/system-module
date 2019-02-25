@@ -1,0 +1,20 @@
+{% extends "streams::blank" %}
+
+{% block  content %}
+    <div class="container-fluid">
+
+        {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
+        'createdAt': 'Time',
+        'content.hostname': 'Hostname',
+        'content.type': 'Action',
+        'content.key': 'Key',
+        }} %}
+
+        {% include "anomaly.module.system::admin/partials/user" %}
+
+        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
+        'content.value': 'Value',
+        }} %}
+
+    </div>
+{% endblock %}

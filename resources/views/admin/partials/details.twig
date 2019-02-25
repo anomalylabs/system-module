@@ -1,0 +1,44 @@
+<div class="card">
+
+    <div class="card-header">
+        <h5 class="card-title">
+            {{ ucfirst(type) }} Details
+        </h5>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-borderless">
+            {% for attribute, label in attributes %}
+                {% if attribute not in ['content.occurrences', 'tags'] %}
+                    <tr>
+                        <th>{{ label }}</th>
+                        <td>{{ array_get(entry, attribute) }}</td>
+                    </tr>
+                {% endif %}
+                {% if attribute == 'content.occurrences' %}
+                    <tr>
+                        <th>{{ label }}</th>
+                        <td>{{ array_get(entry, attribute) }}</td>
+                    </tr>
+                {% endif %}
+                {% if attribute == 'content.duration' %}
+                    <tr>
+                        <th>{{ label }}</th>
+                        <td>{{ array_get(entry, attribute) }} ms</td>
+                    </tr>
+                {% endif %}
+                {% if attribute == 'tags' %}
+                    <tr>
+                        <th>{{ label }}</th>
+                        <td>
+                            {% for tag in array_get(entry, attribute) %}
+                                {{ tag }}&nbsp;
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+</div>

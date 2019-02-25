@@ -26,6 +26,7 @@ class SystemModule extends Module
      */
     protected $sections = [
         'requests' => [
+            'href'    => 'admin/system/requests',
             'buttons' => [
                 'refresh' => [
                     'type' => 'primary',
