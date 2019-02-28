@@ -4,20 +4,20 @@
     <div class="container-fluid">
 
         {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
-        'createdAt': 'Time',
-        'content.hostname': 'Hostname',
-        'content.class': 'Type',
-        'content.file': 'Location',
-        'content.occurrences': 'Occurrances',
-        'tags': 'Tags',
+        'Time': 'createdAt',
+        'Hostname': 'content.hostname',
+        'Type': 'content.class',
+        'Location': 'content.file',
+        'Occurrances': 'content.occurrences',
+        'Tags': 'tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'content.message': 'Message',
-        'content.line_preview': 'Location',
-        'content.trace': 'Stacktrace',
+        'Message': 'content.message',
+        'Location': 'content.line_preview',
+        'Stacktrace': 'content.trace',
         }} %}
 
 

@@ -20,7 +20,7 @@
 
                     {% if value is iterable %}
                         {% if value|first is iterable %}
-                            <pre><code>{{ dump(value) }}</code></pre>
+                            <pre><code>{{ var_dump(value) }}</code></pre>
                         {% else %}
                             <pre><code>{{ value|join('\n')|raw }}</code></pre>
                         {% endif %}

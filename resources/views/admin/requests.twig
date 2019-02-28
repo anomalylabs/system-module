@@ -4,29 +4,29 @@
     <div class="container-fluid">
 
         {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
-        'createdAt': 'Time',
-        'content.hostname': 'Hostname',
-        'content.method': 'Method',
-        'content.controller_action': 'Controller Action',
-        'content.middle': 'Middleware',
-        'content.uri': 'Path',
-        'content.response_status': 'Status',
-        'content.duration': 'Duration',
+        'Time': 'entry.createdAt',
+        'Hostname': 'entry.content.hostname',
+        'Method': 'entry.content.method',
+        'Controller Action': 'entry.content.controller_action',
+        'Middleware': 'content.middle',
+        'Path': 'entry.content.uri',
+        'Status': 'entry.content.response_status',
+        'Duration': '{entry.content.duration} ms',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'content.payload': 'Payload',
-        'content.headers': 'Headers',
-        'content.session': 'Session',
-        'content.response': 'Response',
+        'Payload': 'content.payload',
+        'Headers': 'content.headers',
+        'Session': 'content.session',
+        'Response': 'content.response',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'content.queries': 'Queries',
-        'content.events': 'Events',
-        'content.cache': 'Cache',
+        'Queries': 'content.queries',
+        'Events': 'content.events',
+        'Cache': 'content.cache',
         }} %}
 
 
