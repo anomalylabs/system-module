@@ -36,4 +36,13 @@ class JobsTableBuilder extends TelescopeTableBuilder
             'heading' => 'Happened',
         ],
     ];
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'view',
+    ];
 }

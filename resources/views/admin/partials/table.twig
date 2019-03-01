@@ -15,8 +15,13 @@
                 <tr>
                     <th>{{ label }}</th>
                     <td>
-                        {% if value is iterable %}
-                            <pre><code>{{ var_dump(value) }}</code></pre>
+                        {% set original = attribute is iterable ? attribute.value : attribute %}
+                        {% set original = original is iterable ? null : original %}
+
+                        {% set value = value(attribute, entry) %}
+
+                        {% if str_contains(original, ['print_r', 'var_export', 'var_dump']) %}
+                            <pre class="language-{{ attribute.language ?: 'php' }}"><code>{{ value|raw }}</code></pre>
                         {% else %}
                             {{ value|raw }}
                         {% endif %}

@@ -1,8 +1,11 @@
 <?php namespace Anomaly\SystemModule\Http\Controller\Admin;
 
+use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\SystemModule\Telescope\Table\TelescopeTableBuilder;
 use Laravel\Telescope\Contracts\EntriesRepository;
+use Laravel\Telescope\EntryResult;
+use Laravel\Telescope\Storage\EntryQueryOptions;
 
 /**
  * Class TelescopeController
@@ -43,11 +46,12 @@ class TelescopeController extends AdminController
      * View a Telescope entry.
      *
      * @param EntriesRepository $repository
+     * @param Asset $asset
      * @param string $type
      * @param $id
      * @return \Illuminate\Contracts\View\View|mixed
      */
-    public function view(EntriesRepository $repository, $type, $id)
+    public function view(EntriesRepository $repository, Asset $asset, $type, $id)
     {
         $watcher = config('anomaly.module.system::telescope.watchers.' . $type);
 
@@ -59,9 +63,24 @@ class TelescopeController extends AdminController
 
         $entry['tags'] = array_pop($entry);
 
-        //var_dump($entry);die;
+        $asset->add('styles.css', 'anomaly.module.system::css/prism.css');
+        $asset->add('styles.css', 'anomaly.module.system::css/system.css');
 
-        return $this->view->make($view, compact('type', 'entry'));
+        $asset->add('scripts.js', 'anomaly.module.system::js/prism.js');
+        $asset->add('scripts.js', 'anomaly.module.system::js/initialize.js');
+
+        $batch = $repository->get(null, EntryQueryOptions::forBatchId($entry['batchId'])->limit(-1))->map(
+            function (EntryResult $entry) {
+
+                $item = (array)$entry;
+
+                $item['tags'] = array_pop($item);
+
+                return $item;
+            }
+        )->all();
+
+        return $this->view->make($view, compact('type', 'entry', 'batch'));
     }
 
 }

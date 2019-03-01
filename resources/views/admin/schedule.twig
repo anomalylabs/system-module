@@ -6,16 +6,14 @@
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
+            'Description': 'entry.content.description',
             'Command': 'entry.content.command',
-            'Exit Code': 'entry.content.exit_code',
+            'Expression': 'entry.content.expression',
+            'Timezone': 'entry.content.timezone',
+            'Output': 'entry.content.output',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
-
-        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Arguments': '{{ var_export(entry.content.arguments, true) }}',
-            'Options': '{{ var_export(entry.content.options, true) }}',
-        }} %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
             'Cache': 'content.cache',

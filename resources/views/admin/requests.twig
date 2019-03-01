@@ -3,32 +3,31 @@
 {% block  content %}
     <div class="container-fluid">
 
-        {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
-        'Time': 'entry.createdAt',
-        'Hostname': 'entry.content.hostname',
-        'Method': 'entry.content.method',
-        'Controller Action': 'entry.content.controller_action',
-        'Middleware': 'content.middle',
-        'Path': 'entry.content.uri',
-        'Status': 'entry.content.response_status',
-        'Duration': '{entry.content.duration} ms',
+        {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
+            'Time': 'entry.createdAt',
+            'Hostname': 'entry.content.hostname',
+            'Method': 'entry.content.method',
+            'Controller Action': 'entry.content.controller_action',
+            'Middleware': '{{ var_export(entry.content.middleware) }}',
+            'Path': 'entry.content.uri',
+            'Status': 'entry.content.response_status',
+            'Duration': '{entry.content.duration} ms',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
-        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'Payload': 'content.payload',
-        'Headers': 'content.headers',
-        'Session': 'content.session',
-        'Response': 'content.response',
+        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
+            'Payload': '{{ var_export(entry.content.payload, true) }}',
+            'Headers': '{{ var_export(entry.content.headers, true) }}',
+            'Session': '{{ var_export(entry.content.session, true) }}',
+            'Response': '{{ var_export(entry.content.response, true) }}',
         }} %}
 
-        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'Queries': 'content.queries',
-        'Events': 'content.events',
-        'Cache': 'content.cache',
+        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
+            'Queries': 'content.queries',
+            'Events': 'content.events',
+            'Cache': 'content.cache',
         }} %}
-
 
     </div>
 {% endblock %}
