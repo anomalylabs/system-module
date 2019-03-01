@@ -47,14 +47,14 @@ return [
             'default_value' => true,
         ],
     ],
-    'redis_enabled'         => [
-        'type'   => 'anomaly.field_type.boolean',
-        'env'    => env('TELESCOPE_REDIS_WATCHER', true),
-        'bind'   => 'anomaly.module.system::telescope.watchers.redis.enabled',
-        'config' => [
-            'default_value' => true,
-        ],
-    ],
+//    'redis_enabled'         => [
+//        'type'   => 'anomaly.field_type.boolean',
+//        'env'    => env('TELESCOPE_REDIS_WATCHER', true),
+//        'bind'   => 'anomaly.module.system::telescope.watchers.redis.enabled',
+//        'config' => [
+//            'default_value' => true,
+//        ],
+//    ],
     'dumps_enabled'         => [
         'type'   => 'anomaly.field_type.boolean',
         'env'    => env('TELESCOPE_DUMP_WATCHER', true),

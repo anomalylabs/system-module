@@ -89,12 +89,12 @@ return [
                     'cache_enabled',
                 ],
             ],
-            'redis'         => [
-                'title'  => 'anomaly.module.system::tab.redis',
-                'fields' => [
-                    'redis_enabled',
-                ],
-            ],
+//            'redis'         => [
+//                'title'  => 'anomaly.module.system::tab.redis',
+//                'fields' => [
+//                    'redis_enabled',
+//                ],
+//            ],
         ],
     ],
 ];

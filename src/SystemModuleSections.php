@@ -56,17 +56,24 @@ class SystemModuleSections
             $enabled = config('anomaly.module.system::telescope.watchers.' . $slug . '.enabled');
 
             $buttons['toggle'] = [
-                'type'     => $enabled ? 'danger' : 'success',
-                'icon'     => $enabled ? 'fa fa-pause' : 'fa fa-play',
-                'text'     => '',//$enabled ? 'Disable' : 'Enable',
+                'type' => $enabled ? 'danger' : 'success',
+                'icon' => $enabled ? 'fa fa-pause' : 'fa fa-play',
+                'text' => $enabled ? 'Disable' : 'Enable',
+            ];
+
+            $buttons['actions'] = [
+                'text'     => 'Tools',
+                'icon'     => 'wrench',
+                'type'     => 'warning',
+                'href'     => false,
                 'dropdown' => [
-                    'Clear All Data'          => 'admin/system/telescope/clear',
-                    'Clear ' . ucfirst($slug) => 'admin/system/telescope/clear/' . $slug,
+                    'Clear All Data'                    => 'admin/system/telescope/clear',
+                    'Clear ' . ucfirst($slug) . ' Data' => 'admin/system/telescope/clear/' . $slug,
                 ],
             ];
 
             if ($slug == 'cache') {
-                //$buttons['clear'] = ;
+                $buttons['actions']['dropdown']['Purge Cache'] = 'admin/system/cache/clear';
             }
 
             $section = [
