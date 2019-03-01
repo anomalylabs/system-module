@@ -6,15 +6,18 @@
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
-            'Level': 'entry.content.level',
+            'Name': 'entry.content.name',
+            'Broadcast': '<pre>{{ entry.content.broadcast ? "true" : "false" }}</pre>',
             'Tags': 'entry.tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Message': '{{ json_encode(entry.content.message, 128)|raw }}',
-            'Context': '{{ json_encode(entry.content.context, 128)|raw }}',
+            'Payload': '{{ json_encode(entry.content.payload, 128)|raw }}',
+            'Listeners': {
+                'view': 'anomaly.module.system::admin/fragments/listeners'
+            },
         }} %}
 
     </div>

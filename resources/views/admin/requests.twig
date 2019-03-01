@@ -8,26 +8,27 @@
             'Hostname': 'entry.content.hostname',
             'Method': 'entry.content.method',
             'Controller Action': 'entry.content.controller_action',
-            'Middleware': '{{ var_export(entry.content.middleware) }}',
+            'Middleware': 'entry.content.middleware|join("\n")',
             'Path': 'entry.content.uri',
             'Status': 'entry.content.response_status',
             'Duration': '{entry.content.duration} ms',
+            'Tags': 'entry.tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Payload': '{{ var_export(entry.content.payload, true) }}',
-            'Headers': '{{ var_export(entry.content.headers, true) }}',
-            'Session': '{{ var_export(entry.content.session, true) }}',
-            'Response': '{{ var_export(entry.content.response, true) }}',
+            'Payload': '{{ json_encode(entry.content.payload, 128)|raw }}',
+            'Headers': '{{ json_encode(entry.content.headers, 128)|raw }}',
+            'Session': '{{ json_encode(entry.content.session, 128)|raw }}',
+            'Response': '{{ json_encode(entry.content.response, 128)|raw }}',
         }} %}
 
-        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Queries': 'content.queries',
-            'Events': 'content.events',
-            'Cache': 'content.cache',
-        }} %}
+        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
+            {#'Queries': 'content.queries',#}
+            {#'Events': 'content.events',#}
+            {#'Cache': 'content.cache',#}
+        {#}} %}#}
 
     </div>
 {% endblock %}

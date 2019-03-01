@@ -15,9 +15,9 @@
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Message': '{{ var_dump(entry.content.message, true) }}',
-            'Location': '{{ var_dump(entry.content.line_preview, true) }}',
-            'Stacktrace': '{{ var_dump(entry.content.trace, true) }}',
+            'Message': '{{ var_export(entry.content.message, true)|raw }}',
+            'Location': '{{ var_dump(entry.content.line_preview) }}',
+            'Stacktrace': '{{ var_dump(entry.content.trace) }}',
         }} %}
 
 

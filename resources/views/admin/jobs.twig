@@ -12,20 +12,21 @@
             'Queue': 'entry.content.queue',
             'Tries': 'entry.content.tries',
             'Timeout': 'entry.content.timeout',
+            'Tags': 'entry.tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Data': '{{ var_export(entry.content.data, true) }}',
+            'Data': '{{ json_encode(entry.content.data, 128)|raw }}',
             'Exception': '{{ var_export(entry.content.exception, true) }}',
             'Preview': '{{ var_export(entry.content.line_preview, true) }}',
             'Trace': '{{ var_export(entry.content.trace, true) }}',
         }} %}
 
-        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Cache': 'content.cache',
-        }} %}
+        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
+            {#'Cache': 'content.cache',#}
+        {#}} %}#}
 
     </div>
 {% endblock %}

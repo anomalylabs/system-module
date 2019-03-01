@@ -8,8 +8,6 @@ use Laravel\Telescope\Contracts\EntriesRepository;
 use Laravel\Telescope\Contracts\PrunableRepository;
 use Laravel\Telescope\Storage\DatabaseEntriesRepository;
 use Laravel\Telescope\Telescope;
-use Monolog\Logger;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class SystemModuleServiceProvider
@@ -49,6 +47,7 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     protected $routes = [
         'admin/system/{type?}'          => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@index',
+        'admin/system/{type}/toggle'    => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@toggle',
         'admin/system/{type}/view/{id}' => 'Anomaly\SystemModule\Http\Controller\Admin\TelescopeController@view',
     ];
 

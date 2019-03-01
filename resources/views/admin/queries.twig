@@ -6,21 +6,23 @@
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
-            'connection': 'entry.content.connection',
+            'Connection': 'entry.content.connection',
+            'Location': '{{ entry.content.file }}:{{ entry.content.line }}',
+            'Slow': '<pre>{{ entry.content.slow ? "true" : "false" }}</pre>',
+            'Time': '{{ entry.content.time }} ms',
+            'Tags': 'entry.tags',
         }} %}
-{{ dd(entry) }}
+
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Data': '{{ var_export(entry.content.data, true) }}',
-            'Exception': '{{ var_export(entry.content.exception, true) }}',
-            'Preview': '{{ var_export(entry.content.line_preview, true) }}',
-            'Trace': '{{ var_export(entry.content.trace, true) }}',
+            'SQL': '{{ var_export(entry.content.sql, true)|raw }}',
+            'Bindings': '{{ json_encode(entry.content.bindings, 128)|raw }}',
         }} %}
 
-        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'Cache': 'content.cache',
-        }} %}
+        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
+            {#'Cache': 'content.cache',#}
+        {#}} %}#}
 
     </div>
 {% endblock %}

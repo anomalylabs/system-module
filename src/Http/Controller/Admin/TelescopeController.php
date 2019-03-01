@@ -1,10 +1,13 @@
 <?php namespace Anomaly\SystemModule\Http\Controller\Admin;
 
+use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Asset\Asset;
+use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\SystemModule\Telescope\Table\TelescopeTableBuilder;
 use Laravel\Telescope\Contracts\EntriesRepository;
 use Laravel\Telescope\EntryResult;
+use Laravel\Telescope\Storage\EntryModel;
 use Laravel\Telescope\Storage\EntryQueryOptions;
 
 /**
@@ -81,6 +84,54 @@ class TelescopeController extends AdminController
         )->all();
 
         return $this->view->make($view, compact('type', 'entry', 'batch'));
+    }
+
+    /**
+     * Toggle the watcher on or off.
+     *
+     * @param $type
+     */
+    public function toggle(SettingRepositoryInterface $settings, $type)
+    {
+        $settings->set(
+            'anomaly.module.system::' . $type . '_enabled',
+            !config('anomaly.module.system::telescope.watchers.' . $type . '.enabled', false)
+        );
+
+        return $this->redirect->back();
+    }
+
+    /**
+     * Return the view for an email entry.
+     *
+     * @param EntriesRepository $repository
+     * @param $id
+     * @return string
+     */
+    public function message(EntriesRepository $repository, $id)
+    {
+        $entry = $repository->find($id);
+
+        return $entry->content['html'];
+    }
+
+    /**
+     * Clear Telescope
+     *
+     * @param Kernel $console
+     * @param EntryModel $model
+     * @param null $type
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function clear(Kernel $console, EntryModel $model, $type = null)
+    {
+        if ($type) {
+            $model->newQuery()->where('type', str_singular($type))->delete();
+        } else {
+            $console->call('telescope:clear');
+        }
+
+        return $this->redirect->back();
     }
 
     /**

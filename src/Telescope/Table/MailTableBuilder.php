@@ -16,8 +16,14 @@ class MailTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = [
-        'entry.content.id' => [
-            'heading' => 'ID',
+        'entry.content.mailable'           => [
+            'heading' => 'Mailable',
+        ],
+        'entry.content.to|keys|join(", ")' => [
+            'heading' => 'Recipients',
+        ],
+        'entry.created_at.diffForHumans()' => [
+            'heading' => 'Happened',
         ],
     ];
 }

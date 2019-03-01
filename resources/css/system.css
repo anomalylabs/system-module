@@ -2,6 +2,10 @@
     margin-bottom: 0;
 }
 
+pre[class*="language-"] {
+    margin: 0;
+}
+
 .card-block pre {
     margin: -20px;
     padding: 20px;

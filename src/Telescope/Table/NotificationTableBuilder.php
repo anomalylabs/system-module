@@ -16,8 +16,14 @@ class NotificationTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = [
-        'entry.content.id' => [
-            'heading' => 'ID',
+        'entry.content.notification' => [
+            'heading' => 'Notification',
+        ],
+        'entry.content.channel' => [
+            'heading' => 'Channel',
+        ],
+        'entry.created_at.diffForHumans()' => [
+            'heading' => 'Happened',
         ],
     ];
 }

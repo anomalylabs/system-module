@@ -6,19 +6,17 @@
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
-            'Description': 'entry.content.description',
-            'Command': 'entry.content.command',
-            'Expression': 'entry.content.expression',
-            'Timezone': 'entry.content.timezone',
-            'Output': 'entry.content.output',
+            'channel': 'entry.content.channel',
+            'notification': 'entry.content.notification',
             'Tags': 'entry.tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
-        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
-            {#'Cache': 'content.cache',#}
-        {#}} %}#}
+        {% include "anomaly.module.system::admin/partials/section" with {
+            'title': 'Notifiable',
+            'attribute' : '{{ json_encode(entry.content.notifiable, 128)|raw }}',
+        } %}
 
     </div>
 {% endblock %}
