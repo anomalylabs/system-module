@@ -83,4 +83,12 @@ class TelescopeController extends AdminController
         return $this->view->make($view, compact('type', 'entry', 'batch'));
     }
 
+    /**
+     * Enable dumps briefly.
+     */
+    public function dumps()
+    {
+        cache()->put('telescope:dump-watcher', true, now()->addSecond(10));
+    }
+
 }

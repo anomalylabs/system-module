@@ -6,14 +6,9 @@
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
-            'Status': 'entry.content.status',
-            'Name': 'entry.content.name',
-            'Connection': 'entry.content.connection',
-            'Queue': 'entry.content.queue',
-            'Tries': 'entry.content.tries',
-            'Timeout': 'entry.content.timeout',
+            'connection': 'entry.content.connection',
         }} %}
-
+{{ dd(entry) }}
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {

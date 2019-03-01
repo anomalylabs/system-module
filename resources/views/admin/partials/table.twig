@@ -9,9 +9,6 @@
     <div class="table-responsive">
         <table class="table table-borderless">
             {% for label, attribute in attributes %}
-
-                {% set value = value(attribute, entry) %}
-
                 <tr>
                     <th>{{ label }}</th>
                     <td>
@@ -20,8 +17,14 @@
 
                         {% set value = value(attribute, entry) %}
 
-                        {% if str_contains(original, ['print_r', 'var_export', 'var_dump']) %}
+                        {% if str_contains(original, ['json_encode', 'print_r', 'var_export', 'var_dump']) %}
                             <pre class="language-{{ attribute.language ?: 'php' }}"><code>{{ value|raw }}</code></pre>
+                        {#{% elseif str_contains(original, 'entry.content.line_preview') %}
+                            <pre class="language-{{ attribute.language ?: 'php' }}"><code>{{ value|join('\n') }}</code></pre>
+                        #}{% elseif original == 'entry.tags' %}
+                            {% for tag in entry.tags %}
+                                <span class="tag tag-default">{{ tag }}</span>
+                            {% endfor %}
                         {% else %}
                             {{ value|raw }}
                         {% endif %}

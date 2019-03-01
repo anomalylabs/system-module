@@ -1,0 +1,20 @@
+{% extends "streams::blank" %}
+
+{% block  content %}
+    <div class="container-fluid">
+
+        {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
+            'Time': 'entry.createdAt',
+            'Hostname': 'entry.content.hostname',
+            'Level': 'entry.content.level',
+        }} %}
+
+        {% include "anomaly.module.system::admin/partials/user" %}
+
+        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
+            'Message': '{{ json_encode(entry.content.message, JSON_PRETTY_PRINT) }}',
+            'Context': '{{ json_encode(entry.content.context, JSON_PRETTY_PRINT) }}',
+        }} %}
+
+    </div>
+{% endblock %}

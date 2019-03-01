@@ -8,6 +8,8 @@ use Laravel\Telescope\Contracts\EntriesRepository;
 use Laravel\Telescope\Contracts\PrunableRepository;
 use Laravel\Telescope\Storage\DatabaseEntriesRepository;
 use Laravel\Telescope\Telescope;
+use Monolog\Logger;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class SystemModuleServiceProvider
@@ -103,8 +105,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\LogWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\JobWatcher.enabled' => config(
@@ -113,8 +113,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\JobWatcher.enabled'));
 
         config(
             [
@@ -125,8 +123,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\MailWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\CacheWatcher.enabled' => config(
@@ -135,8 +131,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\CacheWatcher.enabled'));
 
         config(
             [
@@ -147,8 +141,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\RedisWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\DumpWatcher.enabled' => config(
@@ -157,8 +149,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\DumpWatcher.enabled'));
 
         config(
             [
@@ -169,8 +159,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\QueryWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\ModelWatcher.enabled' => config(
@@ -179,8 +167,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ModelWatcher.enabled'));
 
         config(
             [
@@ -191,8 +177,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\EventWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled' => config(
@@ -201,8 +185,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled'));
 
         config(
             [
@@ -213,8 +195,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\CommandWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\ScheduleWatcher.enabled' => config(
@@ -223,8 +203,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ScheduleWatcher.enabled'));
 
         config(
             [
@@ -235,8 +213,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
             ]
         );
 
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\ExceptionWatcher.enabled'));
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\NotificationWatcher.enabled' => config(
@@ -245,8 +221,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
                 ),
             ]
         );
-
-        //dd(config('telescope.watchers.Laravel\Telescope\Watchers\NotificationWatcher.enabled'));
 
         config(['telescope.watchers.Laravel\Telescope\Watchers\GateWatcher.enabled' => false]);
 

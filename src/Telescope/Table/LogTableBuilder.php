@@ -16,4 +16,13 @@ class LogTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = LogTableColumns::class;
+
+    /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'view',
+    ];
 }

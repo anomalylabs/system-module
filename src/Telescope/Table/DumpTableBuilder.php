@@ -25,4 +25,25 @@ class DumpTableBuilder extends TelescopeTableBuilder
                     ',
         ],
     ];
+
+    /**
+     * The options array.
+     *
+     * @var array
+     */
+    protected $options = [
+        'title'       => 'Please keep this window open.',
+        'description' => 'The dump watcher tab must be open in a browser for recording to occur, otherwise the dumps will be ignored.',
+    ];
+
+    /**
+     * The table assets.
+     *
+     * @var array
+     */
+    protected $assets = [
+        'scripts.js' => [
+            'anomaly.module.system::js/dumps.js',
+        ],
+    ];
 }

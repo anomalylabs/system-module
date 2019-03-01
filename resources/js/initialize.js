@@ -4,7 +4,7 @@
      * Setup the code examples
      */
     let examples = Array.prototype.slice.call(
-        document.querySelectorAll('pre > code')
+        document.querySelectorAll('pre[class~="language"] > code')
     );
 
     examples.forEach(function (code, index) {

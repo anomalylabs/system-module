@@ -3,21 +3,21 @@
 {% block  content %}
     <div class="container-fluid">
 
-        {% include "anomaly.module.system::admin/partials/details" with {'attributes': {
-        'Time': 'createdAt',
-        'Hostname': 'content.hostname',
-        'Type': 'content.class',
-        'Location': 'content.file',
-        'Occurrances': 'content.occurrences',
-        'Tags': 'tags',
+        {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
+            'Time': 'createdAt',
+            'Hostname': 'content.hostname',
+            'Type': 'entry.content.class',
+            'Location': 'entry.content.file',
+            'Occurrances': 'entry.content.occurrences',
+            'Tags': 'entry.tags',
         }} %}
 
         {% include "anomaly.module.system::admin/partials/user" %}
 
-        {% include "anomaly.module.system::admin/partials/content" with {'attributes': {
-        'Message': 'content.message',
-        'Location': 'content.line_preview',
-        'Stacktrace': 'content.trace',
+        {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
+            'Message': '{{ var_dump(entry.content.message, true) }}',
+            'Location': '{{ var_dump(entry.content.line_preview, true) }}',
+            'Stacktrace': '{{ var_dump(entry.content.trace, true) }}',
         }} %}
 
 
