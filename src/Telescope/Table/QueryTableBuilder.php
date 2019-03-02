@@ -16,14 +16,21 @@ class QueryTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = [
-        'entry.content.sql'                => [
+
+        'query' => [
             'heading' => 'Query',
-        ],
-        'entry.content.time'               => [
-            'heading' => 'Duration',
-        ],
-        'entry.created_at.diffForHumans()' => [
-            'heading' => 'Happened',
+            'wrapper' => '
+                {value.query}
+                <br>
+                <small class="text-muted">
+                    Executed at {value.time} in {value.duration} ms ({value.ago})
+                </small>',
+            'value'   => [
+                'query'    => 'entry.content.sql',
+                'duration' => 'entry.content.time',
+                'time'     => 'entry.created_at',
+                'ago'      => 'entry.created_at.diffForHumans()',
+            ],
         ],
     ];
 }
