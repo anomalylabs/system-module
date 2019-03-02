@@ -78,12 +78,18 @@ class TelescopeController extends AdminController
         $asset->add('scripts.js', 'anomaly.module.system::js/initialize.js');
 
         /* @var Collection $collection */
-        $collection = EntryModel::where('batch_id', $entry['batchId'])->limit(-1)->get()->groupBy('type');
+        $collection = EntryModel::where('batch_id', $entry['batchId'])
+            ->where('uuid', '!=', $id)
+            ->limit(-1)
+            ->get()
+            ->groupBy('type');
 
         $batch = (new Collection());
 
         foreach (['request'] as $type) {
-            $batch->put($type, $collection->pull($type));
+            if ($collection->has($type)) {
+                $batch->put($type, $collection->pull($type));
+            }
         }
 
         foreach ($collection as $key => $items) {
