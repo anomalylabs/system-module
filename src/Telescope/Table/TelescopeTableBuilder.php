@@ -30,6 +30,19 @@ class TelescopeTableBuilder extends TableBuilder
     protected $model = EntryModel::class;
 
     /**
+     * The table filters.
+     *
+     * @var array
+     */
+    protected $filters = [
+        'search' => [
+            'columns' => [
+                'content',
+            ],
+        ],
+    ];
+    
+    /**
      * The table buttons.
      *
      * @var array

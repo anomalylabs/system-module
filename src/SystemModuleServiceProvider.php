@@ -83,18 +83,6 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     public function boot()
     {
-        if (request()->is('admin/system*')) {
-            return;
-        }
-
-        if (!config('anomaly.module.system::telescope.enabled', false)) {
-            return;
-        }
-
-        if (!config('anomaly.module.system::telescope.admin_enabled', false) && request()->is('admin*')) {
-            return;
-        }
-
         config(
             [
                 'telescope.watchers.Laravel\Telescope\Watchers\LogWatcher.enabled' => config(
@@ -222,6 +210,18 @@ class SystemModuleServiceProvider extends AddonServiceProvider
         );
 
         config(['telescope.watchers.Laravel\Telescope\Watchers\GateWatcher.enabled' => false]);
+
+        if (request()->is('admin/system*')) {
+            return;
+        }
+
+        if (!config('anomaly.module.system::telescope.enabled', false)) {
+            return;
+        }
+
+        if (!config('anomaly.module.system::telescope.admin_enabled', false) && request()->is('admin*')) {
+            return;
+        }
 
         Telescope::start($this->app);
 
