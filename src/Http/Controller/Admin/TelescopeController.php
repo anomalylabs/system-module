@@ -101,7 +101,7 @@ class TelescopeController extends AdminController
                     [
                         'view' => [
                             'target' => '_blank',
-                            'href'   => 'admin/system/' . str_plural($type) . '/view/{entry.id}',
+                            'href'   => 'admin/system/' . str_plural($type) . '/view/{entry.uuid}',
                         ],
                     ]
                 )
