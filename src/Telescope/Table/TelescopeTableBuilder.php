@@ -48,9 +48,7 @@ class TelescopeTableBuilder extends TableBuilder
      * @var array
      */
     protected $buttons = [
-        'view' => [
-            'target' => '_blank',
-        ],
+        'view',
     ];
 
     /**
