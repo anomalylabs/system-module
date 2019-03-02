@@ -4,11 +4,10 @@ use Anomaly\SettingsModule\Setting\Contract\SettingRepositoryInterface;
 use Anomaly\Streams\Platform\Asset\Asset;
 use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Support\Collection;
 use Anomaly\SystemModule\Telescope\Table\TelescopeTableBuilder;
 use Laravel\Telescope\Contracts\EntriesRepository;
-use Laravel\Telescope\EntryResult;
 use Laravel\Telescope\Storage\EntryModel;
-use Laravel\Telescope\Storage\EntryQueryOptions;
 
 /**
  * Class TelescopeController
@@ -74,16 +73,18 @@ class TelescopeController extends AdminController
         $asset->add('scripts.js', 'anomaly.module.system::js/prism.js');
         $asset->add('scripts.js', 'anomaly.module.system::js/initialize.js');
 
-        $batch = $repository->get(null, EntryQueryOptions::forBatchId($entry['batchId'])->limit(-1))->map(
-            function (EntryResult $entry) {
+        /* @var Collection $collection */
+        $collection = EntryModel::where('batch_id', $entry['batchId'])->limit(-1)->get()->groupBy('type');
 
-                $item = (array)$entry;
+        $batch = (new Collection());
 
-                $item['tags'] = array_pop($item);
+        foreach (['request'] as $type) {
+            $batch->put($type, $collection->pull($type));
+        }
 
-                return $item;
-            }
-        )->groupBy('type');
+        foreach ($collection as $key => $items) {
+            $batch->put($key, $items);
+        }
 
         foreach ($batch as $type => $collection) {
 
@@ -104,7 +105,7 @@ class TelescopeController extends AdminController
                         ],
                     ]
                 )
-                ->setEntries($collection);
+                ->setTableEntries($collection);
 
             $batch[$type] = $table->make()->getTableContent();
         }

@@ -2,9 +2,21 @@
 
 use Laravel\Telescope\Storage\EntryModel;
 
+/**
+ * Class RequestTableColumns
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class RequestTableColumns
 {
 
+    /**
+     * Handle the columns.
+     *
+     * @param RequestTableBuilder $builder
+     */
     public function handle(RequestTableBuilder $builder)
     {
         $builder->setColumns(
@@ -56,7 +68,7 @@ class RequestTableColumns
                 ],
                 'entry.content.duration'           => [
                     'heading' => 'Duration',
-                    'wrapper' => '{value}ms'
+                    'wrapper' => '{value}ms',
                 ],
                 'entry.created_at.diffForHumans()' => [
                     'heading' => 'Happened',
