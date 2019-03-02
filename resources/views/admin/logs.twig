@@ -17,5 +17,7 @@
             'Context': '{{ json_encode(entry.content.context, 128)|raw }}',
         }} %}
 
+        {% include "anomaly.module.system::admin/partials/batch" %}
+
     </div>
 {% endblock %}

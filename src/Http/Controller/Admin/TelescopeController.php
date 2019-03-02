@@ -83,7 +83,31 @@ class TelescopeController extends AdminController
 
                 return $item;
             }
-        )->all();
+        )->groupBy('type');
+
+        foreach ($batch as $type => $collection) {
+
+            /* @var TelescopeTableBuilder $table */
+            $table = app(config('anomaly.module.system::telescope.watchers.' . str_plural($type) . '.table'));
+
+            $table
+                ->setFilters([])
+                ->setActions([])
+                ->setType($type)
+                ->setOption('header_class', 'hidden')
+                ->setOption('container_class', 'container-wide')
+                ->setButtons(
+                    [
+                        'view' => [
+                            'target' => '_blank',
+                            'href'   => 'admin/system/' . str_plural($type) . '/view/{entry.id}',
+                        ],
+                    ]
+                )
+                ->setEntries($collection);
+
+            $batch[$type] = $table->make()->getTableContent();
+        }
 
         return $this->view->make($view, compact('type', 'entry', 'batch'));
     }

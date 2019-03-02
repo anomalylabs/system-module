@@ -18,9 +18,7 @@
             'Options': '{{ json_encode(entry.content.options, 128)|raw }}',
         }} %}
 
-        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
-            {#'Cache': 'content.cache',#}
-        {#}} %}#}
+        {% include "anomaly.module.system::admin/partials/batch" %}
 
     </div>
 {% endblock %}

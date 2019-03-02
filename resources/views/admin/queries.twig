@@ -20,9 +20,7 @@
             'Bindings': '{{ json_encode(entry.content.bindings, 128)|raw }}',
         }} %}
 
-        {#{% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {#}
-            {#'Cache': 'content.cache',#}
-        {#}} %}#}
+        {% include "anomaly.module.system::admin/partials/batch" %}
 
     </div>
 {% endblock %}

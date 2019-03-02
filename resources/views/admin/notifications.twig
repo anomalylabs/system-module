@@ -18,5 +18,7 @@
             'attribute' : '{{ json_encode(entry.content.notifiable, 128)|raw }}',
         } %}
 
+        {% include "anomaly.module.system::admin/partials/batch" %}
+
     </div>
 {% endblock %}
