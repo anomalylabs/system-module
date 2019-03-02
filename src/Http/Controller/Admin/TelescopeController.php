@@ -61,7 +61,11 @@ class TelescopeController extends AdminController
             dd($id);
         }
 
-        $entry = (array)$repository->find($id);
+        try {
+            $entry = (array)$repository->find($id);
+        } catch (\Exception $exception) {
+            return redirect('admin/system/' . $type);
+        }
 
         $entry['tags'] = array_pop($entry);
 
