@@ -16,7 +16,7 @@
         {% include "anomaly.module.system::admin/partials/user" %}
 
         {% include "anomaly.module.system::admin/partials/tabs" with {'attributes': {
-            'SQL': '{{ var_export(entry.content.sql, true)|raw }}',
+            'SQL': '{{ var_export(vsprintf(str_replace(\'?\', \'%s\', entry.content.sql), entry.content.bindings), true)|raw }}',
             'Bindings': '{{ json_encode(entry.content.bindings, 128)|raw }}',
         }} %}
 
