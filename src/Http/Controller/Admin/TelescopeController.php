@@ -66,6 +66,8 @@ class TelescopeController extends AdminController
 
         $entry['tags'] = array_pop($entry);
 
+        $this->breadcrumbs->add($id);
+
         $asset->add('styles.css', 'anomaly.module.system::css/prism.css');
         $asset->add('styles.css', 'anomaly.module.system::css/system.css');
 
