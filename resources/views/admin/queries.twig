@@ -7,7 +7,7 @@
             'Time': 'entry.createdAt',
             'Hostname': 'entry.content.hostname',
             'Connection': 'entry.content.connection',
-            'Location': '{{ entry.content.file }}:{{ entry.content.line }}',
+            'Location': '{{ str_replace(base_path(), "", entry.content.file) }}:{{ entry.content.line }}',
             'Slow': '<pre>{{ entry.content.slow ? "true" : "false" }}</pre>',
             'Time': '{{ entry.content.time }} ms',
             'Tags': 'entry.tags',
