@@ -67,13 +67,13 @@ class SystemModuleSections
                 'type'     => 'warning',
                 'href'     => false,
                 'dropdown' => [
-                    'Clear All Data'                    => 'admin/system/telescope/clear',
-                    'Clear ' . ucfirst($slug) . ' Data' => 'admin/system/telescope/clear/' . $slug,
+                    'Clear All Logs'                    => 'admin/system/telescope/clear',
+                    'Clear ' . ucfirst($slug) . ' Logs' => 'admin/system/telescope/clear/' . $slug,
                 ],
             ];
 
             if ($slug == 'cache') {
-                $buttons['actions']['dropdown']['Purge Cache'] = 'admin/system/cache/clear';
+                $buttons['actions']['dropdown']['Flush Cache'] = 'admin/system/cache/clear';
             }
 
             $section = [

@@ -80,6 +80,7 @@ class TelescopeController extends AdminController
         /* @var Collection $collection */
         $collection = EntryModel::where('batch_id', $entry['batchId'])
             ->where('uuid', '!=', $id)
+            ->where('type', '!=', 'dump')
             ->limit(-1)
             ->get()
             ->groupBy('type');

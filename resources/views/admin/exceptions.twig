@@ -4,10 +4,10 @@
     <div class="container-fluid">
 
         {% include "anomaly.module.system::admin/partials/table" with {'attributes': {
-            'Time': 'createdAt',
-            'Hostname': 'content.hostname',
+            'Time': 'entry.createdAt',
+            'Hostname': 'entry.content.hostname',
             'Type': 'entry.content.class',
-            'Location': 'entry.content.file',
+            'Location': '{{ str_replace(base_path(), "", entry.content.file) }}:{{ entry.content.line }}',
             'Occurrances': 'entry.content.occurrences',
             'Tags': 'entry.tags',
         }} %}

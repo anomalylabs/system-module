@@ -16,14 +16,22 @@ class EventTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = [
-        'entry.content.name'               => [
-            'heading' => 'Name',
+        'event'                            => [
+            'heading' => 'Event',
+            'wrapper' => '
+                {value.name}
+                <br>
+                <small class="text-muted">
+                    Dispatched at {value.time} ({value.ago})
+                </small>',
+            'value'   => [
+                'name' => 'entry.content.name',
+                'time' => 'entry.created_at',
+                'ago'  => 'entry.created_at.diffForHumans()',
+            ],
         ],
         'entry.content.listeners|length'   => [
             'heading' => 'Listeners',
-        ],
-        'entry.created_at.diffForHumans()' => [
-            'heading' => 'Happened',
         ],
     ];
 }

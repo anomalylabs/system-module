@@ -16,7 +16,6 @@ class QueryTableBuilder extends TelescopeTableBuilder
      * @var array
      */
     protected $columns = [
-
         'query' => [
             'heading' => 'Query',
             'wrapper' => '

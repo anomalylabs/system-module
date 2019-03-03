@@ -21,11 +21,23 @@ class LogTableColumns
     {
         $builder->setColumns(
             [
-                'entry.content.message'            => [
-                    'heading' => 'Message',
+                'message' => [
+                    'heading' => 'Exception',
+                    'wrapper' => '
+                        {value.message}
+                        <br>
+                        <small class="text-muted">
+                            {value.time} ({value.ago})
+                        </small>',
+                    'value'   => [
+                        'message' => 'entry.content.message',
+                        'time'    => 'entry.created_at',
+                        'ago'     => 'entry.created_at.diffForHumans()',
+                    ],
                 ],
-                'entry.content.level'              => [
+                'level'   => [
                     'heading' => 'Level',
+                    'value'   => 'entry.content.level|upper',
                     'wrapper' => function (EntryModel $entry) {
 
                         $context = 'default';
@@ -44,9 +56,6 @@ class LogTableColumns
 
                         return '<span class="tag tag-' . $context . '">{value}</span>';
                     },
-                ],
-                'entry.created_at.diffForHumans()' => [
-                    'heading' => 'Happened',
                 ],
             ]
         );

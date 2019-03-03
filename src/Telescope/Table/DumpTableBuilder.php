@@ -17,12 +17,22 @@ class DumpTableBuilder extends TelescopeTableBuilder
      */
     protected $columns = [
         'description' => [
-            'is_safe' => true,
             'heading' => 'Description',
-            'value'   => '
-                        {{ entry.content.entry_point_type }}: {{ entry.content.entry_point_description }}
-                        {{ entry.content.dump|raw }}
-                    ',
+            'wrapper' => '
+                {value.type}: {value.description}
+                <br>
+                <small>Hash: {value.hash}</small>
+                <br>
+                <small class="text-muted">
+                    {value.time} ({value.ago})
+                </small>',
+            'value'   => [
+                'hash'        => '{{ md5(entry.content.entry_point_description) }}',
+                'type'        => 'entry.content.entry_point_type|capitalize',
+                'description' => 'entry.content.entry_point_description',
+                'time'        => 'entry.created_at',
+                'ago'         => 'entry.created_at.diffForHumans()',
+            ],
         ],
     ];
 
