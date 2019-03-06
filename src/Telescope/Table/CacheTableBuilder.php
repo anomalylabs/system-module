@@ -13,19 +13,9 @@ class CacheTableBuilder extends TelescopeTableBuilder
     /**
      * The table columns.
      *
-     * @var array
+     * @var string|array
      */
-    protected $columns = [
-        'entry.content.key'                => [
-            'heading' => 'Key',
-        ],
-        'entry.content.type'               => [
-            'heading' => 'Action',
-        ],
-        'entry.created_at.diffForHumans()' => [
-            'heading' => 'Happened',
-        ],
-    ];
+    protected $columns = CacheTableColumns::class;
 
     /**
      * The table buttons.
