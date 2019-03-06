@@ -99,8 +99,10 @@ class TelescopeController extends AdminController
 
         foreach ($batch as $type => $collection) {
 
+            $watcher = !in_array($type, ['cache']) ? str_plural($type) : $type;
+
             /* @var TelescopeTableBuilder $table */
-            $table = app(config('anomaly.module.system::telescope.watchers.' . str_plural($type) . '.table'));
+            $table = app(config('anomaly.module.system::telescope.watchers.' . $watcher . '.table'));
 
             $table
                 ->setFilters([])
