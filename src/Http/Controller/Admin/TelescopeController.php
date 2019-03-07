@@ -99,7 +99,7 @@ class TelescopeController extends AdminController
 
         foreach ($batch as $type => $collection) {
 
-            $watcher = !in_array($type, ['cache']) ? str_plural($type) : $type;
+            $watcher = !in_array($type, ['cache', 'mail', 'schedule']) ? str_plural($type) : $type;
 
             /* @var TelescopeTableBuilder $table */
             $table = app(config('anomaly.module.system::telescope.watchers.' . $watcher . '.table'));
