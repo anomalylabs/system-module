@@ -52,6 +52,15 @@ class TelescopeTableBuilder extends TableBuilder
     ];
 
     /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'delete',
+    ];
+
+    /**
      * The table options.
      *
      * @var array
