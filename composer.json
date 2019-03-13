@@ -3,28 +3,31 @@
     "type": "streams-addon",
     "description": "A system management and monitoring utility for the Streams Platform.",
     "keywords": [
-        "log viewer",
         "system module",
-        "pyrocms module"
+        "log viewer",
+        "pyrocms",
+        "module"
     ],
-    "homepage": "http://pyrocms.com/",
+    "homepage": "http://pyrocms.com/addons/anomaly/system-module",
     "license": "MIT",
     "authors": [
         {
             "name": "PyroCMS, Inc.",
-            "email": "support@pyrocms.com",
             "homepage": "http://pyrocms.com/",
             "role": "Owner"
         },
         {
             "name": "Ryan Thompson",
-            "email": "ryan@pyrocms.com",
             "homepage": "http://ryanthepyro.com/",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "support@pyrocms.com"
+        "docs": "https://pyrocms.com/documentation/system-module",
+        "system": "https://pyrocms.com/forum/channels/system-module",
+        "slack": "https://pyrocms.com/slack",
+        "issues": "https://github.com/pyrocms/pyrocms/issues?q=is:issue is:open [system-module]",
+        "source": "https://github.com/anomalylabs/system-module"
     },
     "require": {
         "anomaly/streams-platform": "^1.6",
