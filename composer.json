@@ -24,7 +24,7 @@
     ],
     "support": {
         "docs": "https://pyrocms.com/documentation/system-module",
-        "system": "https://pyrocms.com/forum/channels/system-module",
+        "forum": "https://pyrocms.com/forum/channels/system-module",
         "slack": "https://pyrocms.com/slack",
         "issues": "https://github.com/pyrocms/pyrocms/issues?q=is:issue is:open [system-module]",
         "source": "https://github.com/anomalylabs/system-module"
