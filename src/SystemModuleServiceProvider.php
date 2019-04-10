@@ -56,7 +56,7 @@ class SystemModuleServiceProvider extends AddonServiceProvider
      */
     public function register()
     {
-        config(['telescope' => include_once base_path('vendor/laravel/telescope/config/telescope.php')]);
+        config(['telescope' => require base_path('vendor/laravel/telescope/config/telescope.php')]);
 
         $this->app->singleton(
             EntriesRepository::class,
