@@ -6,6 +6,8 @@ return [
             'telescope_enabled',
             'admin_enabled',
             'ignore_paths',
+            'enabled_watchers',
+            'max_entries',
         ],
     ],
     'monitoring' => [
@@ -14,7 +16,8 @@ return [
             'requests'      => [
                 'title'  => 'anomaly.module.system::tab.requests',
                 'fields' => [
-                    'requests_enabled',
+                    'requests_ignore_paths',
+                    'requests_include_paths',
                 ],
             ],
             'commands'      => [

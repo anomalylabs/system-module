@@ -29,6 +29,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Telescope Max Entries
+    |--------------------------------------------------------------------------
+    |
+    | To prevent unintentional DB flooding please specify
+    | a maximum number of allowed Telescope entries.
+    |
+    */
+
+    'max_entries' => env('TELESCOPE_MAX_ENTRIES', 10000),
+
+    /*
+    |--------------------------------------------------------------------------
     | Ignored Paths & Commands
     |--------------------------------------------------------------------------
     |
@@ -62,71 +74,88 @@ return [
             'enabled' => env('TELESCOPE_REQUEST_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/requests',
             'table'   => \Anomaly\SystemModule\Telescope\Table\RequestTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\RequestWatcher.enabled',
         ],
         'commands'      => [
             'enabled' => env('TELESCOPE_COMMAND_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/commands',
             'table'   => \Anomaly\SystemModule\Telescope\Table\CommandTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\CommandWatcher.enabled',
         ],
         'schedule'      => [
             'enabled' => env('TELESCOPE_SCHEDULE_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/schedule',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ScheduleTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\ScheduleWatcher.enabled',
         ],
         'jobs'          => [
             'enabled' => env('TELESCOPE_JOB_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/jobs',
             'table'   => \Anomaly\SystemModule\Telescope\Table\JobsTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\JobWatcher.enabled',
         ],
         'exceptions'    => [
             'enabled' => env('TELESCOPE_EXCEPTION_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/exceptions',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ExceptionTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\ExceptionWatcher.enabled',
         ],
         'logs'          => [
             'enabled' => env('TELESCOPE_LOG_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/logs',
             'table'   => \Anomaly\SystemModule\Telescope\Table\LogTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\LogWatcher.enabled',
         ],
         'dumps'         => [
             'enabled' => env('TELESCOPE_DUMP_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/dumps',
             'table'   => \Anomaly\SystemModule\Telescope\Table\DumpTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\DumpWatcher.enabled',
         ],
         'queries'       => [
             'enabled' => env('TELESCOPE_QUERY_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/queries',
             'table'   => \Anomaly\SystemModule\Telescope\Table\QueryTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\QueryWatcher.enabled',
         ],
         'models'        => [
             'enabled' => env('TELESCOPE_MODEL_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/models',
             'table'   => \Anomaly\SystemModule\Telescope\Table\ModelTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\ModelWatcher.enabled',
         ],
         'events'        => [
             'enabled' => env('TELESCOPE_EVENT_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/events',
             'table'   => \Anomaly\SystemModule\Telescope\Table\EventTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\EventWatcher.enabled',
         ],
         'mail'          => [
             'enabled' => env('TELESCOPE_MAIL_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/mail',
             'table'   => \Anomaly\SystemModule\Telescope\Table\MailTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\MailWatcher.enabled',
         ],
         'notifications' => [
             'enabled' => env('TELESCOPE_NOTIFICATION_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/notifications',
             'table'   => \Anomaly\SystemModule\Telescope\Table\NotificationTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\NotificationWatcher.enabled',
         ],
         'cache'         => [
             'enabled' => env('TELESCOPE_CACHE_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/cache',
             'table'   => \Anomaly\SystemModule\Telescope\Table\CacheTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\CacheWatcher.enabled',
         ],
         'redis'         => [
             'enabled' => env('TELESCOPE_REDIS_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/redis',
             'table'   => \Anomaly\SystemModule\Telescope\Table\RedisTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\RedisWatcher.enabled',
         ],
     ],
+
+    'enabled_watchers' => array_filter(explode(',', env('TELESCOPE_ENABLED_WATCHERS'))),
+
 ];
