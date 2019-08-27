@@ -31,7 +31,7 @@
     },
     "require": {
         "anomaly/streams-platform": "^1.6",
-        "laravel/telescope": "^1.0"
+        "laravel/telescope": "^2.0"
     },
     "autoload": {
         "psr-4": {
