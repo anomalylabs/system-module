@@ -27,7 +27,6 @@ class ModelTableColumns
                 'entry.content.action'             => [
                     'heading' => 'Action',
                     'wrapper' => function (EntryModel $entry) {
-
                         $context = 'default';
 
                         if (in_array($entry->content['action'], ['deleted', 'deletedMultiple'])) {

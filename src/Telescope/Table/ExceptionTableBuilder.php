@@ -44,5 +44,4 @@ class ExceptionTableBuilder extends TelescopeTableBuilder
     protected $buttons = [
         'view',
     ];
-    
 }

@@ -39,7 +39,6 @@ class LogTableColumns
                     'heading' => 'Level',
                     'value'   => 'entry.content.level|upper',
                     'wrapper' => function (EntryModel $entry) {
-
                         $context = 'default';
 
                         if (in_array($entry->content['level'], ['emergency', 'critical', 'error', 'alert'])) {

@@ -98,7 +98,6 @@ class TelescopeController extends AdminController
         }
 
         foreach ($batch as $type => $collection) {
-
             $watcher = !in_array($type, ['cache', 'mail', 'schedule']) ? str_plural($type) : $type;
 
             /* @var TelescopeTableBuilder $table */
@@ -123,7 +122,7 @@ class TelescopeController extends AdminController
             $batch[$type] = $table->make()->getTableContent();
         }
 
-        return $this->view->make($view, compact('type', 'entry', 'batch'));
+        return view($view, compact('type', 'entry', 'batch'));
     }
 
     /**
@@ -138,7 +137,7 @@ class TelescopeController extends AdminController
             !config('anomaly.module.system::telescope.watchers.' . $type . '.enabled', false)
         );
 
-        return $this->redirect->back();
+        return back();
     }
 
     /**
@@ -171,7 +170,7 @@ class TelescopeController extends AdminController
             $console->call('telescope:clear');
         }
 
-        return $this->redirect->back();
+        return back();
     }
 
     /**
@@ -181,5 +180,4 @@ class TelescopeController extends AdminController
     {
         cache()->put('telescope:dump-watcher', true, now()->addSecond(10));
     }
-
 }

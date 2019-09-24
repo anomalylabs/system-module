@@ -19,6 +19,6 @@ class CacheController extends AdminController
     {
         cache()->clear();
 
-        return $this->redirect->back();
+        return back();
     }
 }

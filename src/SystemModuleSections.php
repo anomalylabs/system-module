@@ -43,7 +43,6 @@ class SystemModuleSections
         $disabled = !config('anomaly.module.system::telescope.enabled', false);
 
         foreach ($this->sections as $i => $slug) {
-
             $buttons = [
                 'refresh' => [
                     'type'     => 'info',

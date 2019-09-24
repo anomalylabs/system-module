@@ -38,7 +38,6 @@ class CacheTableColumns
                 'entry.content.type' => [
                     'heading' => 'Action',
                     'wrapper' => function (EntryModel $entry) {
-
                         $context = 'default';
 
                         if ($entry->content['type'] == 'forget') {

@@ -67,7 +67,6 @@ class ConfigureTelescope
         $enabled  = config('anomaly.module.system::telescope.enabled_watchers', []);
 
         foreach ($watchers as $watcher => $config) {
-
             $status = in_array($watcher, $enabled);
 
             config(

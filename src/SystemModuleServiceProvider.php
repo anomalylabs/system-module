@@ -85,5 +85,4 @@ class SystemModuleServiceProvider extends AddonServiceProvider
     {
         dispatch_now(new ConfigureTelescope());
     }
-
 }

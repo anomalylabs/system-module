@@ -24,7 +24,6 @@ class RequestTableColumns
                 'entry.content.method'             => [
                     'heading' => 'Verb',
                     'wrapper' => function (EntryModel $entry) {
-
                         $context = 'default';
 
                         if ($entry->content['method'] == 'POST') {
@@ -48,7 +47,6 @@ class RequestTableColumns
                 'entry.content.response_status'    => [
                     'heading' => 'Status',
                     'wrapper' => function (EntryModel $entry) {
-
                         $context = 'default';
 
                         if (substr($entry->content['response_status'], 0, 1) == 3) {

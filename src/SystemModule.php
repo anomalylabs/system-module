@@ -18,5 +18,4 @@ class SystemModule extends Module
      * @var string
      */
     protected $icon = 'fa fa-heartbeat';
-
 }

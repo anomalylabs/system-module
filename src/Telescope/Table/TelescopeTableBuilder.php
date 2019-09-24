@@ -124,5 +124,4 @@ class TelescopeTableBuilder extends TableBuilder
 
         return $this;
     }
-
 }
