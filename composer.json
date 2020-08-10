@@ -30,8 +30,8 @@
         "source": "https://github.com/anomalylabs/system-module"
     },
     "require": {
-        "anomaly/streams-platform": "^1.6",
-        "laravel/telescope": "^1.0"
+        "anomaly/streams-platform": "^1.7",
+        "laravel/telescope": "^3.5"
     },
     "autoload": {
         "psr-4": {
