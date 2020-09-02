@@ -102,7 +102,11 @@ class TelescopeController extends AdminController
             $watcher = !in_array($type, ['cache', 'mail', 'schedule']) ? str_plural($type) : $type;
 
             /* @var TelescopeTableBuilder $table */
-            $table = app(config('anomaly.module.system::telescope.watchers.' . $watcher . '.table'));
+            if (!$table = config('anomaly.module.system::telescope.watchers.' . $watcher . '.table')) {
+                continue;
+            }
+
+            $table = app($table);
 
             $table
                 ->setFilters([])
