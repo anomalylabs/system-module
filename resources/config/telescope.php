@@ -70,12 +70,12 @@ return [
     */
 
     'watchers' => [
-        // 'views'      => [
-        //     'enabled' => env('TELESCOPE_VIEW_WATCHER', true),
-        //     'view'    => 'anomaly.module.system::admin/views',
-        //     'table'   => \Anomaly\SystemModule\Telescope\Table\ViewTableBuilder::class,
-        //     'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\ViewWatcher.enabled',
-        // ],
+        'views'      => [
+            'enabled' => env('TELESCOPE_VIEW_WATCHER', true),
+            'view'    => 'anomaly.module.system::admin/views',
+            'table'   => \Anomaly\SystemModule\Telescope\Table\ViewTableBuilder::class,
+            'key'     => 'telescope.watchers.Laravel\Telescope\Watchers\ViewWatcher.enabled',
+        ],
         'requests'      => [
             'enabled' => env('TELESCOPE_REQUEST_WATCHER', true),
             'view'    => 'anomaly.module.system::admin/requests',
